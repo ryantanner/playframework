@@ -416,7 +416,7 @@ private[json] class JsValueDeserializer(factory: TypeFactory, klass: Class[_]) e
 
       case maybeValue =>
         val toPass = maybeValue.map { v =>
-          val previous :: stack = nextContext
+          val (previous:DeserializerContext) :: (stack:List[DeserializerContext]) = nextContext
           (previous.addValue(v)) +: stack
         }.getOrElse(nextContext)
 
